@@ -14,8 +14,7 @@ from datetime import date
 import base64
 from io import BytesIO
 from pyxlsb import open_workbook as open_xlsb
-from xlsxwriter import Workbook
-
+import xlsxwriter 
 
 # ##  Barra Lateral: 
 

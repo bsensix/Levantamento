@@ -58,7 +58,6 @@ st.title('Relatórios:')
 # In[18]:
 
 
-#tabela = pd.read_excel(r'C:\Users\breno\Desktop\TESTE_SRICPT\SCRIPT_CURVAS_FENOLOGICAS\BI Sensix\relatorio_resultados_08-01-2023.xlsx')
 tabela = pd.read_excel(uploaded_files)
 
 tabela_original = tabela

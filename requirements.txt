@@ -6,3 +6,4 @@ streamlit==1.12.0
 scikit_learn==1.1.1
 openpyxl==3.0.10
 pyxlsb==1.0.10
+absl-py==1.0.0

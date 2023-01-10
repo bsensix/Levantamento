@@ -97,7 +97,7 @@ tabela_original.head()
 
 def to_excel(tabela_original):
     output = BytesIO()
-    writer = pd.ExcelWriter(output)
+    writer = pd.ExcelWriter(output,engine="openpyxl")
     tabela_original.to_excel(writer, index=False, sheet_name='Sheet1')
     workbook = writer.book
     worksheet = writer.sheets['Sheet1']

@@ -55,7 +55,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 st.title('Relatórios:')
 
-st.header('O objetivo desta automação é acelerar o processo de **Levantamento de Área** usada pelos nossos clientes')
+st.subheader('O objetivo desta automação é acelerar o processo de **Levantamento de Área** usada pelos nossos clientes')
 
 
 # ##  Processamento da Planilha: 

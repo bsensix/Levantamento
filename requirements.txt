@@ -3,4 +3,4 @@ pandas==1.4.4
 Pillow==9.4.0
 pyxlsb==1.0.10
 streamlit==1.12.0
-
+openpyxl==3.0.10

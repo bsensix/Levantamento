@@ -13,7 +13,7 @@ from PIL import Image
 from datetime import date
 import base64
 from io import BytesIO
-from xlsxwriter import Workbook
+from pyxlsb import open_workbook as open_xlsb
 
 
 # ##  Barra Lateral: 

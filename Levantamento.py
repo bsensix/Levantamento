@@ -68,7 +68,7 @@ tabela_original = tabela
 
 #tabela = pd.read_excel(r'C:\Users\breno\Desktop\TESTE_SRICPT\SCRIPT_CURVAS_FENOLOGICAS\BI Sensix\relatorio_resultados_08-01-2023.xlsx')
 #Excluir Dados Duplicados
-tabela.drop_duplicates(['Mapeamento','Fazenda'], inplace = True)
+tabela.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
 # Filtrar Colunas 
 tabela = tabela[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área (ha)','Data','Link']]
 n_mapas = tabela['Mapeamento'].count()
@@ -82,7 +82,7 @@ tabela.head()
 tabela.drop_duplicates(['Talhão'], inplace = True)
 soma_area = tabela['Área (ha)'].sum()
 
-tabela_original.drop_duplicates(['Mapeamento','Fazenda'], inplace = True)
+tabela_original.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
 tabela_original = tabela_original[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área (ha)','Data','Link']]
 
 

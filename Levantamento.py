@@ -121,7 +121,8 @@ df = to_excel(tabela_original)
 col1.download_button(label=' ⬇️ Download Levantamento Solos', data=df,file_name= 'Planilha_Solos.xlsx')
 
 tabela_drone = pd.read_excel(uploaded_files_drone)
-tabela_drone_original = tabela_drone
+tabela_drone1 = pd.read_excel(uploaded_files_drone)
+tabela_drone_original = tabela_drone1
 
 #Filtrar Dados de Drone
 filtro_drone = tabela_drone['Origem'] == 'Drone'

@@ -164,7 +164,7 @@ def to_excel(tabela_drone_original):
 
 df_drone = to_excel(tabela_drone_original)
 
-col2.download_button(label=' ⬇️ Download Levantamento Solos', data=df_drone,file_name= 'Planilha_Drone.xlsx')
+col2.download_button(label=' ⬇️ Download Levantamento Drone', data=df_drone,file_name= 'Planilha_Drone.xlsx')
 
 
 

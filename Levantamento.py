@@ -28,7 +28,7 @@ if tipo_analise == 'Solos':
     page_bg_img = """
     <style>
     [data-testid="stAppViewContainer"] > .main {
-    background-image: url("https://s2.glbimg.com/-KiNeS2rsxOE3clNFotv5Y1LdQs=/780x440/e.glbimg.com/og/ed/f/original/2020/08/10/gettyimages-1025633076.jpg");
+    background-image: url("https://blog.sensix.ag/wp-content/uploads/2021/03/Steve_Boreham_Soil_Sampling.jpg");
     background-size: cover;
     }
 

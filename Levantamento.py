@@ -131,7 +131,6 @@ tabela_drone = tabela_drone[filtro_drone]
 #Excluir Dados Duplicados
 tabela_drone.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
 # Filtrar Colunas 
-tabela_drone = tabela_drone[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área (ha)','Data','Link']]
 n_mapas_drone = tabela_drone['Mapeamento'].count()
 soma_area_drone = tabela['Área (ha)'].sum()
 

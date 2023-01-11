@@ -29,6 +29,9 @@ barra_lateral = st.sidebar.empty()
 image = Image.open('Logo-Escuro.png')
 st.sidebar.image(image)
 st.sidebar.markdown('### Levantamentos FieldScan')
+st.sidebar.text('O objetivo desta automação é acelerar o processo de **Levantamento de Área** usada pelos nossos clientes')
+
+
 # Upload Arquivo csv 
 uploaded_files = st.sidebar.file_uploader("Upload Planilha de Solos 📥")
 
@@ -54,8 +57,6 @@ background: rgba(0,0,0,0);
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 st.title('Relatórios:')
-
-st.subheader('O objetivo desta automação é acelerar o processo de **Levantamento de Área** usada pelos nossos clientes')
 
 
 # ##  Processamento da Planilha: 

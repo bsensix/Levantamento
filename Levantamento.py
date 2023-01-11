@@ -120,52 +120,6 @@ df = to_excel(tabela_original)
 
 col1.download_button(label=' ⬇️ Download Levantamento Solos', data=df,file_name= 'Planilha_Solos.xlsx')
 
-tabela_drone = pd.read_excel(uploaded_files_drone)
-tabela_drone1 = pd.read_excel(uploaded_files_drone)
-tabela_drone_original = tabela_drone1
-
-#Filtrar Dados de Drone
-filtro_drone = tabela_drone['Origem'] == 'Drone'
-tabela_drone = tabela_drone[filtro_drone]
-
-
-#Excluir Dados Duplicados
-tabela_drone.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
-# Filtrar Colunas 
-n_mapas_drone = tabela_drone['Mapeamento'].count()
-soma_area_drone = tabela['Área (ha)'].sum()
-
-
-tabela_drone_original.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
-tabela_drone_original = tabela_drone_original[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área (ha)','Data','Link']]
-
-
-tabela_drone_original.loc['Total'] = ' '
-tabela_drone_original['Área (ha)']['Total'] = soma_area_drone
-tabela_drone_original['Mapeamento']['Total'] = n_mapas_drone
-tabela_drone_original['Cliente']['Total'] = 'Total'
-
-tabela_drone_original.head()
-
-
-
-# DataFrame para Planilha Excel em xlsx
-
-def to_excel(tabela_drone_original):
-    output = BytesIO()
-    writer = pd.ExcelWriter(output, engine='xlsxwriter')
-    tabela_drone_original.to_excel(writer, index=False, sheet_name='Sheet1')
-    workbook = writer.book
-    worksheet = writer.sheets['Sheet1']
-    format1 = workbook.add_format({'num_format': '0.00'}) 
-    worksheet.set_column('A:A', None, format1)  
-    writer.save()
-    processed_data = output.getvalue()
-    return processed_data
-
-df_drone = to_excel(tabela_drone_original)
-
-col2.download_button(label=' ⬇️ Download Levantamento Drone', data=df_drone,file_name= 'Planilha_Drone.xlsx')
 
 
 

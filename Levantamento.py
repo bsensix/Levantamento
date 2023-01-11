@@ -55,8 +55,6 @@ background: rgba(0,0,0,0);
 """
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-col1.title('Relatórios:')
-
 
 # ##  Processamento da Planilha: 
 

@@ -136,9 +136,6 @@ n_mapas_drone = tabela_drone['Mapeamento'].count()
 soma_area_drone = tabela['Área (ha)'].sum()
 
 
-filtro_drone = tabela_drone_originial['Origem'] == 'Drone'
-tabela_drone_originial = tabela_drone_originial[filtro_drone]
-
 tabela_drone_original.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
 tabela_drone_original = tabela_drone_original[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área (ha)','Data','Link']]
 

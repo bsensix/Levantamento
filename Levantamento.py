@@ -32,7 +32,6 @@ st.sidebar.markdown('### Levantamentos FieldScan')
 
 
 # Upload Arquivo csv 
-uploaded_files = st.sidebar.file_uploader("Upload Planilha de Solos 📥")
 
 
 # ##  Tela de Fundo:
@@ -62,7 +61,9 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
-col1.title('Relatórios:')
+col1.title('Relatório Solos:')
+# Upload Arquivo csv 
+uploaded_files = col1.file_uploader("Upload Planilha de Solos 📥")
 
 tabela = pd.read_excel(uploaded_files)
 

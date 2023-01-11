@@ -29,7 +29,7 @@ barra_lateral = st.sidebar.empty()
 image = Image.open('Logo-Escuro.png')
 st.sidebar.image(image)
 st.sidebar.markdown('### Levantamentos FieldScan')
-st.sidebar.text('O objetivo desta automação é acelerar o processo de **Levantamento de Área** usada pelos nossos clientes')
+st.sidebar.markdown('O objetivo desta automação é acelerar o processo de **Levantamento de Área** usada pelos nossos clientes')
 
 
 # Upload Arquivo csv 

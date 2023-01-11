@@ -55,20 +55,21 @@ background: rgba(0,0,0,0);
 """
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-st.title('Relatórios:')
+col1.title('Relatórios:')
 
 
 # ##  Processamento da Planilha: 
 
 # In[18]:
 
+col1, col2 = st.columns(2)
+
+col1.title('Relatórios:')
 
 tabela = pd.read_excel(uploaded_files)
 
 tabela_original = tabela
 
-
-#tabela = pd.read_excel(r'C:\Users\breno\Desktop\TESTE_SRICPT\SCRIPT_CURVAS_FENOLOGICAS\BI Sensix\relatorio_resultados_08-01-2023.xlsx')
 #Excluir Dados Duplicados
 tabela.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
 # Filtrar Colunas 
@@ -113,7 +114,7 @@ def to_excel(tabela_original):
 
 df = to_excel(tabela_original)
 
-st.download_button(label=' ⬇️ Download Levantamento Solos', data=df,file_name= 'Planilha_Solos.xlsx')
+col1.download_button(label=' ⬇️ Download Levantamento Solos', data=df,file_name= 'Planilha_Solos.xlsx')
 
 
 # In[11]:

@@ -65,6 +65,11 @@ col1.title('Relatório Solos:')
 # Upload Arquivo csv 
 uploaded_files = col1.file_uploader("Upload Planilha de Solos 📥")
 
+
+col2.title('Relatório Drone:')
+# Upload Arquivo csv 
+uploaded_files_drone = col2.file_uploader("Upload Planilha de IVs 📥")
+
 tabela = pd.read_excel(uploaded_files)
 
 tabela_original = tabela
@@ -114,11 +119,6 @@ def to_excel(tabela_original):
 df = to_excel(tabela_original)
 
 col1.download_button(label=' ⬇️ Download Levantamento Solos', data=df,file_name= 'Planilha_Solos.xlsx')
-
-
-col2.title('Relatório Drone:')
-# Upload Arquivo csv 
-uploaded_files_drone = col2.file_uploader("Upload Planilha de IVs 📥")
 
 tabela_drone = uploaded_files_drone
 tabela_drone_original = tabela_drone

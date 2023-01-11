@@ -44,7 +44,7 @@ if tipo_analise == 'Solos':
     # ##  Processamento da Planilha: 
 
    
-    st.title('Relatório Solos:')
+    st.title('Relatório :brown[Solos]:')
     # Upload Arquivo csv 
     uploaded_files = st.file_uploader("Upload Planilha de Solos 📥")
 

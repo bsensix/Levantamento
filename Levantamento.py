@@ -28,7 +28,7 @@ from xlsxwriter import Workbook
 barra_lateral = st.sidebar.empty()
 image = Image.open('Logo-Escuro.png')
 st.sidebar.image(image)
-st.sidebar.markdown('### Levantamentos FieldScan')
+st.sidebar.markdown('### Levantamentos de Área FieldScan')
 
 
 # Upload Arquivo csv 

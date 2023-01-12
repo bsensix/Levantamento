@@ -200,7 +200,7 @@ if tipo_analise == 'Colheita':
 
     tabela_colheita.head()
 
-    tabela_colheita.drop_duplicates(['Talhão'], inplace = True)
+    #tabela_colheita.drop_duplicates(['Talhão'], inplace = True)
 
     tabela_colheita.loc['Total'] = ' '
     tabela_colheita['Área (ha)']['Total'] = soma_area_colheita

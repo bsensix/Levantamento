@@ -163,8 +163,8 @@ if tipo_analise == 'Drone':
 
     st.download_button(label=' ⬇️ Download Levantamento Drone', data=df_drone,file_name= 'Planilha_Drone.xlsx')
     
- if tipo_analise == 'Colheita':
-
+if tipo_analise == 'Colheita':
+    
     page_bg_img = """
     <style>
     [data-testid="stAppViewContainer"] > .main {

@@ -21,7 +21,7 @@ barra_lateral = st.sidebar.empty()
 image = Image.open('Logo-Escuro.png')
 st.sidebar.image(image)
 st.sidebar.markdown('### Levantamentos Uso de Área FieldScan')
-tipo_analise = st.sidebar.selectbox("📊 Tipo de Levantamento:", ['Solos','Drone','Colheita'])
+tipo_analise = st.sidebar.selectbox("📊 Tipo de Levantamento:", ['Solos','Drone','Colheita','Falhas'])
 
 if tipo_analise == 'Solos':
 
@@ -227,6 +227,61 @@ if tipo_analise == 'Colheita':
     df_colheita = to_excel(tabela_original_colheita)
 
     st.download_button(label=' ⬇️ Download Levantamento Colheita', data=df_colheita,file_name= 'Planilha_Colheita.xlsx')
+    
+if tipo_analise == 'Falhas':
+
+    page_bg_img = """
+    <style>
+    [data-testid="stAppViewContainer"] > .main {
+    background-image: url("https://blog.sensix.ag/wp-content/uploads/2021/03/Falhas-de-Plantio-Cana-de-acucar.jpg");
+    background-size: cover;
+    }
+    [data-testid="stHeader"] {
+    background: rgba(0,0,0,0);
+    }
+    </style>
+    """
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+
+
+    # ##  Processamento da Planilha: 
+
+    st.title('Relatório Falhas 🌿:')
+    # Upload Arquivo csv 
+    uploaded_files = st.file_uploader("Upload Planilha de Drone 📥")
+         
+    tabela_falhas = pd.read_excel(r'C:\Users\breno\Desktop\TESTE_SRICPT\SCRIPT_CURVAS_FENOLOGICAS\relatorio_falhas.xlsx')
+    #Excluir Dados Duplicados
+    tabela_falhas.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
+    tabela_falhas.head()
+
+    # Filtrar Colunas 
+    tabela_falhas = tabela_falhas[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área','Data','Link']]
+    n_mapas_falhas = tabela_falhas['Mapeamento'].count()
+    soma_area_falhas = tabela_falhas['Área'].sum()
+
+    tabela_falhas.loc['Total'] = ' '
+    tabela_falhas['Área']['Total'] = soma_area_falhas
+    tabela_falhas['Mapeamento']['Total'] = n_mapas_falhas
+    tabela_falhas['Cliente']['Total'] = 'Total'
+
+    # DataFrame para Planilha Excel em xlsx
+
+    def to_excel(tabela_falhas):
+        output = BytesIO()
+        writer = pd.ExcelWriter(output, engine='xlsxwriter')
+        tabela_falhas.to_excel(writer, index=False, sheet_name='Sheet1')
+        workbook = writer.book
+        worksheet = writer.sheets['Sheet1']
+        format1 = workbook.add_format({'num_format': '0.00'}) 
+        worksheet.set_column('A:A', None, format1)  
+        writer.save()
+        processed_data = output.getvalue()
+        return processed_data
+
+    df_falhas = to_excel(tabela_falhas)
+
+    st.download_button(label=' ⬇️ Download Levantamento Falhas', data=df_falhas,file_name= 'Planilha_Falhas.xlsx')
 
 
 

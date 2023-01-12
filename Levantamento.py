@@ -250,7 +250,7 @@ if tipo_analise == 'Falhas':
     # Upload Arquivo csv 
     uploaded_files = st.file_uploader("Upload Planilha de Drone 📥")
          
-    tabela_falhas = pd.read_excel(r'C:\Users\breno\Desktop\TESTE_SRICPT\SCRIPT_CURVAS_FENOLOGICAS\relatorio_falhas.xlsx')
+    tabela_falhas = pd.read_excel(uploaded_files)
     #Excluir Dados Duplicados
     tabela_falhas.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
     tabela_falhas.head()

@@ -203,7 +203,8 @@ if tipo_analise == 'Colheita':
     tabela_colheita.head()
 
     tabela_colheita.drop_duplicates(['Talhão'], inplace = True)
-
+    
+    tabela_original_colheita = tabela_original_colheita[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área (ha)','Data','Cultura','Link']]
     tabela_original_colheita.loc['Total'] = ' '
     tabela_original_colheita['Área (ha)']['Total'] = soma_area_colheita
     tabela_original_colheita['Mapeamento']['Total'] = n_mapas_colheita

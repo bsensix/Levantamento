@@ -21,7 +21,7 @@ barra_lateral = st.sidebar.empty()
 image = Image.open('Logo-Escuro.png')
 st.sidebar.image(image)
 st.sidebar.markdown('### Levantamentos Uso de Área FieldScan')
-tipo_analise = st.sidebar.selectbox("📊 Tipo de Ánalise:", ['Solos','Drone'])
+tipo_analise = st.sidebar.selectbox("📊 Tipo de Levantamento:", ['Solos','Drone'])
 
 if tipo_analise == 'Solos':
 
@@ -44,7 +44,7 @@ if tipo_analise == 'Solos':
     # ##  Processamento da Planilha: 
 
    
-    st.title('Relatório Solos:')
+    st.title('Relatório Solos 🌱:')
     # Upload Arquivo csv 
     uploaded_files = st.file_uploader("Upload Planilha de Solos 📥")
 
@@ -115,7 +115,7 @@ if tipo_analise == 'Drone':
 
     # ##  Processamento da Planilha: 
 
-    st.title('Relatório Drone:')
+    st.title('Relatório Drone 🚁:')
     # Upload Arquivo csv 
     uploaded_files = st.file_uploader("Upload Planilha de Drone 📥")
          

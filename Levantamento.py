@@ -21,7 +21,7 @@ barra_lateral = st.sidebar.empty()
 image = Image.open('Logo-Escuro.png')
 st.sidebar.image(image)
 st.sidebar.markdown('### Levantamentos Uso de Área FieldScan')
-tipo_analise = st.sidebar.selectbox("📊 Tipo de Levantamento:", ['Solos','Drone'])
+tipo_analise = st.sidebar.selectbox("📊 Tipo de Levantamento:", ['Solos','Drone','Colheita'])
 
 if tipo_analise == 'Solos':
 
@@ -162,6 +162,68 @@ if tipo_analise == 'Drone':
     df_drone = to_excel(tabela_drone)
 
     st.download_button(label=' ⬇️ Download Levantamento Drone', data=df_drone,file_name= 'Planilha_Drone.xlsx')
+    
+ if tipo_analise == 'Colheita':
+
+    page_bg_img = """
+    <style>
+    [data-testid="stAppViewContainer"] > .main {
+    background-image: url("https://assets.revistacultivar.com.br/eaf49-Perdas-colheita-de-soja_04.jpg");
+    background-size: cover;
+    }
+
+    [data-testid="stHeader"] {
+    background: rgba(0,0,0,0);
+    }
+
+    </style>
+    """
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    
+    
+    # ##  Processamento da Planilha: 
+
+   
+    st.title('Relatório Colheita 🚜:')
+    # Upload Arquivo csv 
+    uploaded_files = st.file_uploader("Upload Planilha de Colheita 📥")
+
+    tabela_colheita = pd.read_excel(uploaded_files)
+    #Excluir Dados Duplicados
+    tabela_colheita.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
+    tabela_colheita.head()
+
+    # Filtrar Colunas 
+    tabela_colheita = tabela_colheita[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área (ha)','Data','Cultura','Link']]
+    n_mapas_colheita = tabela_colheita['Mapeamento'].count()
+    soma_area_colheita = tabela_colheita['Área (ha)'].sum()
+
+    tabela_colheita.head()
+
+    tabela_colheita.drop_duplicates(['Talhão'], inplace = True)
+
+    tabela_colheita.loc['Total'] = ' '
+    tabela_colheita['Área (ha)']['Total'] = soma_area_colheita
+    tabela_colheita['Mapeamento']['Total'] = n_mapas_colheita
+    tabela_colheita['Cliente']['Total'] = 'Total'
+
+    # DataFrame para Planilha Excel em xlsx
+
+    def to_excel(tabela_colheita):
+        output = BytesIO()
+        writer = pd.ExcelWriter(output, engine='xlsxwriter')
+        tabela_colheita.to_excel(writer, index=False, sheet_name='Sheet1')
+        workbook = writer.book
+        worksheet = writer.sheets['Sheet1']
+        format1 = workbook.add_format({'num_format': '0.00'}) 
+        worksheet.set_column('A:A', None, format1)  
+        writer.save()
+        processed_data = output.getvalue()
+        return processed_data
+
+    df_colheita = to_excel(tabela_colheita)
+
+    st.download_button(label=' ⬇️ Download Levantamento Colheita', data=df_colheita,file_name= 'Planilha_Colheita.xlsx')
 
 
 

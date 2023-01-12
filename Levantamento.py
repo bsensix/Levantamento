@@ -189,6 +189,7 @@ if tipo_analise == 'Colheita':
     uploaded_files = st.file_uploader("Upload Planilha de Colheita 📥")
 
     tabela_colheita = pd.read_excel(uploaded_files)
+    tabela_original_colheita = tabela_colheita
     #Excluir Dados Duplicados
     tabela_colheita.drop_duplicates(['Mapeamento','Fazenda','Talhão'], inplace = True)
     tabela_colheita.head()
@@ -196,23 +197,24 @@ if tipo_analise == 'Colheita':
     # Filtrar Colunas 
     tabela_colheita = tabela_colheita[['Cliente','E-mail','Fazenda','Talhão','Mapeamento','Área (ha)','Data','Cultura','Link']]
     n_mapas_colheita = tabela_colheita['Mapeamento'].count()
+    tabela_colheita.drop_duplicates(['Talhão'], inplace = True)
     soma_area_colheita = tabela_colheita['Área (ha)'].sum()
 
     tabela_colheita.head()
 
-    #tabela_colheita.drop_duplicates(['Talhão'], inplace = True)
+    tabela_colheita.drop_duplicates(['Talhão'], inplace = True)
 
-    tabela_colheita.loc['Total'] = ' '
-    tabela_colheita['Área (ha)']['Total'] = soma_area_colheita
-    tabela_colheita['Mapeamento']['Total'] = n_mapas_colheita
-    tabela_colheita['Cliente']['Total'] = 'Total'
+    tabela_original_colheita.loc['Total'] = ' '
+    tabela_original_colheita['Área (ha)']['Total'] = soma_area_colheita
+    tabela_original_colheita['Mapeamento']['Total'] = n_mapas_colheita
+    tabela_original_colheita['Cliente']['Total'] = 'Total'
 
     # DataFrame para Planilha Excel em xlsx
 
-    def to_excel(tabela_colheita):
+    def to_excel(tabela_original_colheita):
         output = BytesIO()
         writer = pd.ExcelWriter(output, engine='xlsxwriter')
-        tabela_colheita.to_excel(writer, index=False, sheet_name='Sheet1')
+        tabela_original_colheita.to_excel(writer, index=False, sheet_name='Sheet1')
         workbook = writer.book
         worksheet = writer.sheets['Sheet1']
         format1 = workbook.add_format({'num_format': '0.00'}) 
@@ -221,7 +223,7 @@ if tipo_analise == 'Colheita':
         processed_data = output.getvalue()
         return processed_data
 
-    df_colheita = to_excel(tabela_colheita)
+    df_colheita = to_excel(tabela_original_colheita)
 
     st.download_button(label=' ⬇️ Download Levantamento Colheita', data=df_colheita,file_name= 'Planilha_Colheita.xlsx')
 
